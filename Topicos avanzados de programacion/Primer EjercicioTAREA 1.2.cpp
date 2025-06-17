@@ -50,7 +50,7 @@ int main() {
 
     // se llama a la función que modifica los enteros y muestra sus direcciones
     cout << "\narray de enteros después del %2 y direcciones de memoria:" << endl;
-    ModificarBooleanos(MiArrayEnteros, 10);
+    ModificarArray(MiArrayEnteros, 10);
 
     return 0; 
 }

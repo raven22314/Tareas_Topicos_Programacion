@@ -41,9 +41,9 @@ struct rect {
 	}
 };
 
-// esta funciC3n recibe un rectC!ngulo por referencia y saca sus coordenadas finales
-bool imprimirrect(const rect& r, float& finx, float& finy) {
-	// si algC:n valor es menor a 0, regresa false
+// esta funcion recibe un rectangulo por referencia y saca sus coordenadas finales
+bool ImprimirRect(const rect& r, float& finx, float& finy) {
+	// si algun valor es menor a 0, regresa false
 	if (r.x < 0 || r.y < 0 || r.alto < 0 || r.ancho < 0) {
 		return false;
 	}
@@ -63,32 +63,32 @@ bool imprimirrect(const rect& r, float& finx, float& finy) {
 	return true;
 }
 
-// funciC3n que revisa si dos rectC!ngulos se traslapan
+// funcion que revisa si dos rectangulos se traslapan
 bool checkoverlap(const rect& a, const rect& b) {
-	// si uno estC! completamente a la derecha o izquierda del otro
+	// si uno esta completamente a la derecha o izquierda del otro
 	if (a.x + a.ancho <= b.x || b.x + b.ancho <= a.x) {
 		return false;
 	}
 
-	// si uno estC! completamente arriba o abajo del otro
+	// si uno esta completamente arriba o abajo del otro
 	if (a.y + a.alto <= b.y || b.y + b.alto <= a.y) {
 		return false;
 	}
 
-	// si no se cumple lo anterior, entonces sC- se traslapan
+	// si no se cumple lo anterior, entonces no se traslapan
 	return true;
 }
 
 int main() {
-	// creamos algunos rectC!ngulos como los que pide que pongamos  del ejemplo
+	// creamos algunos rectangulos como los que pide que pongamos  del ejemplo
 	rect r1(0, 0, 5, 5);
 	rect r2(6, 6, 5, 5);
 	rect r3(2, 2, 2, 2);
 	rect r4(1, 1, 7, 2);
 
-	// mostramos informaciC3n del primer rectC!ngulo
+	// mostramos informacion del primer rectangulo
 	float fx, fy;
-	if (!imprimirrect(r1, fx, fy)) {
+	if (!ImprimirRect(r1, fx, fy)) {
 		cout << "uno o mC!s valores son negativos" << endl;
 	}
 

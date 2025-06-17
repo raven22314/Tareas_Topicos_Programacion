@@ -9,7 +9,7 @@ using namespace std;
 
 // esta función recibe un array de booleanos y su tamaño
 // pone false en las posiciones pares y true en las impares
-void ModificarBooleanos(bool arr[], int size) {
+void ModificarArray(bool arr[], int size) {
     for (int i = 0; i < size; i++) {
         if (i % 2 == 0) {
             arr[i] = false; // si el índice es par, pone false
@@ -22,7 +22,7 @@ void ModificarBooleanos(bool arr[], int size) {
 // esta es una función con el mismo nombre pero para arrays de enteros
 // cambia cada número por su valor % 2 (0 si es par, 1 si es impar)
 // usa punteros en lugar de corchetes para acceder al array
-void ModificarBooleanos(int arr[], int size) {
+void ModificarArray(int arr[], int size) {
     int* punteroAux = arr; // puntero auxiliar que empieza al inicio del array
 
     for (int i = 0; i < size; i++) {
@@ -37,7 +37,7 @@ int main() {
     bool MiArrayBool[5];
 
     // se llama a la función que modifica los valores del array de booleanos
-    ModificarBooleanos(MiArrayBool, 5);
+    ModificarArray(MiArrayBool, 5);
 
     // se imprimen los valores del array de booleanos
     cout << "array de booleanos:" << endl;

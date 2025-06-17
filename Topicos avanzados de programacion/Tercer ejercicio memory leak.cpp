@@ -8,8 +8,8 @@ int main() {
     float* punteroFlotante = nullptr;
 
     // Pedir memoria dinámica y asignar valor 7.77
-    punteroFlotante = new float;
-    *punteroFlotante = 7.77;
+    punteroFlotante = new float(7.77);
+    
 
     // Declarar variable float con valor 6.66
     float variableFlotante = 6.66;
@@ -27,8 +27,8 @@ int main() {
          << endl;
 
     // Pedir memoria dinámica otra vez y darle valor 1984
-    punteroFlotante = new float;
-    *punteroFlotante = 1984;
+    punteroFlotante = new float(1984);
+    
 
     // Crear otro puntero que apunta a la misma dirección que punteroFlotante
     float* nuevoPunteroFlotante = punteroFlotante;

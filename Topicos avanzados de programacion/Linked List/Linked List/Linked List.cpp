@@ -5,12 +5,16 @@ using namespace std;
 //https://cplusplus.com/reference/
 //Recursos vistos en clase y asi mismo codigos del profesor
 
+
+
+#define CONTAR_COPIAS 
+
 // clase nodo que guarda un dato y un apuntador al siguiente nodo
 template <typename T>
 class Node {
 public:
-    T data;           // aquí se guarda el valor
-    Node<T>* next;    // aquí se guarda el apuntador al siguiente nodo
+    T data;
+    Node<T>* next;
 
     Node(T value) {
         data = value;
@@ -22,67 +26,82 @@ public:
 template <typename T>
 class LinkedList {
 private:
-    Node<T>* first;   // apunta al primer nodo de la lista
-    int count;        // cuenta cuántos elementos hay en la lista
+    Node<T>* first;
+    int count;
 
 public:
     LinkedList() {
-        first = nullptr; // empieza vacía
+        first = nullptr;
         count = 0;
     }
 
-    // 2) agrega un nodo al principio de la lista
-    void push_front(T value) {
-        Node<T>* newNode = new Node<T>(value); // crea nuevo nodo con el valor
-        newNode->next = first; // conecta el nuevo nodo al inicio de la lista
-        first = newNode; // ahora el nuevo nodo es el primero de la lista
-        count++; // aumentamos el contador
+    // libera todos los nodos existentes en la lista
+    void clear() {
+        while (first != nullptr) {
+            Node<T>* temp = first;
+            first = first->next;
+            delete temp;
+        }
+        count = 0;
     }
 
-    // 2) quita el nodo del principio de la lista
+    // Este mÃ©todo se puede usar cuando se quiere limpiar manualmente
+    // TambiÃ©n lo usamos al final del programa para no dejar memoria colgada
+
+    void push_front(T value) {
+        Node<T>* newNode = new Node<T>(value);
+        newNode->next = first;
+        first = newNode;
+        count++;
+    }
+
     void pop_front() {
         if (first == nullptr) {
-            cout << "la lista ya está vacía, no se puede hacer pop_front" << endl;
+            cout << "la lista ya estÃ¡ vacÃ­a, no se puede hacer pop_front" << endl;
             return;
         }
-        Node<T>* temp = first; // guardamos el primer nodo en una variable temporal
-        first = first->next; // movemos el primer nodo al siguiente
-        delete temp; // liberamos la memoria del nodo que quitamos
-        count--; // reducimos el contador
+        Node<T>* temp = first;
+        first = first->next;
+        delete temp;
+        count--;
     }
 
-    
     void Print() {
-        Node<T>* current = first; // empezamos desde el principio
+        Node<T>* current = first;
         while (current != nullptr) {
-            cout << current->data << " "; // imprimimos el valor del nodo
-            current = current->next; // pasamos al siguiente nodo
+            cout << current->data << " ";
+            current = current->next;
         }
-        cout << endl; 
+        cout << endl;
     }
-
-    
 
     int getCount() {
-        return count; // regresa cuántos nodos hay en la lista
+        return count;
     }
 };
 
-// ejemplo de uso de la clase linkedlist
 int main() {
     LinkedList<int> lista;
 
-    lista.push_front(10); // mete 10 al inicio
-    lista.push_front(20); // ahora 20 está antes que 10
-    lista.push_front(30); // ahora 30 está antes que 20
+    lista.push_front(10);
+    lista.push_front(20);
+    lista.push_front(30);
 
     cout << "contenido de la lista: ";
-    lista.Print(); // imprime la lista
-
-    lista.pop_front(); // quita el primer nodo 30
-
-    cout << "después de pop_front: ";
     lista.Print();
+
+    lista.pop_front();
+
+    cout << "despuÃ©s de pop_front: ";
+    lista.Print();
+
+#if defined(CONTAR_COPIAS)
+    // mostramos cuÃ¡ntas copias se hicieron si el conteo estÃ¡ activado
+    // cout << "copias realizadas en resize: " << arr.GetCopyCounter() << endl;
+#endif
+
+    // Liberamos memoria al final del programa
+    lista.clear();
 
     return 0;
 }

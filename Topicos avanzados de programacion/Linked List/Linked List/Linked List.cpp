@@ -5,8 +5,7 @@ using namespace std;
 //https://cplusplus.com/reference/
 //Recursos vistos en clase y asi mismo codigos del profesor
 
-// activar 1 o desactivar 0 
-#define CONTAR_COPIAS 1
+
 
 // clase nodo que guarda un dato y un apuntador al siguiente nodo
 template <typename T>
@@ -20,26 +19,12 @@ public:
         next = nullptr;
     }
 
-    // constructor de copia para contar copias si se activa
+    // constructor de copia 
     Node(const Node<T>& other) {
         data = other.data;
         next = nullptr;
-
-#if CONTAR_COPIAS != 0
-        copyCounter++;
-#endif
     }
-
-#if CONTAR_COPIAS != 0
-    static int copyCounter; 
-#endif
 };
-
-#if CONTAR_COPIAS != 0
-
-template <typename T>
-int Node<T>::copyCounter = 0;
-#endif
 
 // clase lista ligada simple
 template <typename T>
@@ -52,6 +37,11 @@ public:
     LinkedList() {
         first = nullptr;
         count = 0;
+    }
+
+    // 🔻 Destructor agregado 
+    ~LinkedList() {
+        clear();  // libera toda la memoria usada
     }
 
     // inserta un valor al inicio de la lista
@@ -74,7 +64,7 @@ public:
         count--;
     }
 
-    // imprime la lista desde el inicio hasta el final
+    // imprime la lista de inicio hasta al final 
     void Print() {
         Node<T>* current = first;
         while (current != nullptr) {
@@ -84,7 +74,7 @@ public:
         cout << endl;
     }
 
-    // función que borra todos los nodos (libera memoria)
+    // función que borra todos los nodos
     void clear() {
         while (first != nullptr) {
             pop_front(); 
@@ -95,16 +85,9 @@ public:
     int getCount() {
         return count;
     }
-
-#if CONTAR_COPIAS != 0
-    
-    static int GetCopyCounter() {
-        return Node<T>::copyCounter;
-    }
-#endif
 };
 
-// función principal para probar la lista
+//funcion principal para probar la lista
 int main() {
     LinkedList<int> lista;
 
@@ -120,13 +103,7 @@ int main() {
     cout << "después de pop_front: ";
     lista.Print(); 
 
-    // 2.2: llamamos a clear() manualmente para liberar memoria y evitar memory leaks
-    lista.clear();
-
-#if CONTAR_COPIAS != 0
-    cout << "copias realizadas: " << LinkedList<int>::GetCopyCounter() << endl;
-#endif
+    lista.clear(); 
 
     return 0;
 }
-

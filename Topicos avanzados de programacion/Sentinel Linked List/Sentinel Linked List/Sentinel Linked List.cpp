@@ -37,10 +37,10 @@ private:
 
 private:
 	Node* NIL;  // Nodo centinela (marca el inicio y fin de la lista)
-	int count;  // Nï¿½mero de elementos en la lista
+	int count;  // Número de elementos en la lista
 
 public:
-	// Constructor: inicializa lista vacï¿½a con nodo centinela
+	// Constructor: inicializa lista vacía con nodo centinela
 	SentinelLinkedList()
 	{
 		count = 0;
@@ -49,7 +49,7 @@ public:
 		NIL->prev = NIL;
 	}
 
-	int GetCount() { return count; } // Devuelve nï¿½mero de elementos
+	int GetCount() { return count; } // Devuelve número de elementos
 
 	// Buscar un nodo con valor dado
 	Node* Find(T value);
@@ -67,7 +67,7 @@ public:
 	// Elimina el nodo del final y devuelve su valor
 	T PopBack();
 
-	// Inserta un nuevo nodo despuï¿½s de uno existente
+	// Inserta un nuevo nodo después de uno existente
 	void Insert(T valueToInsert, Node* previousNode);
 
 	// Elimina el primer nodo que tenga el valor dado
@@ -91,6 +91,10 @@ public:
 	int operationCounter; // (No se utiliza, se puede ignorar)
 };
 
+// ------------------------------
+// Implementaciones
+// ------------------------------
+
 // Elimina el primer nodo que contenga el valor dado
 template<typename T>
 void SentinelLinkedList<T>::Remove(T valueToRemove)
@@ -110,7 +114,7 @@ void SentinelLinkedList<T>::Remove(T valueToRemove)
 	}
 }
 
-// Busca el primer nodo con el valor (versiï¿½n 1)
+// Busca el primer nodo con el valor (versión 1)
 template<typename T>
 typename SentinelLinkedList<T>::Node* SentinelLinkedList<T>::Find(T value)
 {
@@ -121,10 +125,10 @@ typename SentinelLinkedList<T>::Node* SentinelLinkedList<T>::Find(T value)
 			return currentNode;
 		currentNode = currentNode->next;
 	}
-	return nullptr; // No se encontrï¿½
+	return nullptr; // No se encontró
 }
 
-// Igual que Find pero llamada distinta (versiï¿½n 2)
+// Igual que Find pero llamada distinta (versión 2)
 template<typename T>
 typename SentinelLinkedList<T>::Node* SentinelLinkedList<T>::FindV2(T value)
 {
@@ -138,7 +142,7 @@ typename SentinelLinkedList<T>::Node* SentinelLinkedList<T>::FindV2(T value)
 	return nullptr;
 }
 
-// Inserta un nodo nuevo despuï¿½s de previousNode
+// Inserta un nodo nuevo después de previousNode
 template<typename T>
 void SentinelLinkedList<T>::Insert(T valueToInsert, Node* previousNode)
 {
@@ -168,7 +172,7 @@ T SentinelLinkedList<T>::PopBack()
 {
 	if (count == 0)
 	{
-		cout << "Cuidado, estï¿½s haciendo PopBack en una lista vacï¿½a." << endl;
+		cout << "Cuidado, estás haciendo PopBack en una lista vacía." << endl;
 		return {};
 	}
 
@@ -188,7 +192,7 @@ T SentinelLinkedList<T>::Front()
 {
 	if (count == 0)
 	{
-		cout << "Advertencia: intentas acceder al primer elemento de una lista vacï¿½a." << endl;
+		cout << "Advertencia: intentas acceder al primer elemento de una lista vacía." << endl;
 		return {};
 	}
 	return NIL->next->data;
@@ -212,7 +216,7 @@ T SentinelLinkedList<T>::PopFront()
 {
 	if (count == 0)
 	{
-		cout << "Cuidado, estï¿½s haciendo PopFront en una lista vacï¿½a." << endl;
+		cout << "Cuidado, estás haciendo PopFront en una lista vacía." << endl;
 		return {};
 	}
 
@@ -232,7 +236,7 @@ void SentinelLinkedList<T>::Print()
 {
 	if (count == 0)
 	{
-		cout << "(lista vacï¿½a)";
+		cout << "(lista vacía)";
 	}
 	else
 	{
@@ -246,7 +250,7 @@ void SentinelLinkedList<T>::Print()
 	cout << endl;
 }
 
-// Elimina todos los nodos, dejando la lista vacï¿½a
+// Elimina todos los nodos, dejando la lista vacía
 template<typename T>
 void SentinelLinkedList<T>::Clear()
 {
@@ -257,7 +261,7 @@ void SentinelLinkedList<T>::Clear()
 }
 
 // ------------------------------
-// Funciï¿½n principal para probar la lista
+// Función principal para probar la lista
 // ------------------------------
 int main() {
 	SentinelLinkedList<int> lista;
@@ -271,7 +275,7 @@ int main() {
 
 	lista.PopFront();     // Elimina 30, lista queda: 20 10
 
-	cout << "Despuï¿½s de PopFront: ";
+	cout << "Después de PopFront: ";
 	lista.Print();        // Muestra: 20 10
 
 	lista.Clear();        // Elimina todos los elementos

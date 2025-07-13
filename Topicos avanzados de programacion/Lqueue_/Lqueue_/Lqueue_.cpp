@@ -198,14 +198,7 @@ public:
         data.PushBack(value);
     }
 
-    // Elimina y devuelve el primer elemento de la cola
-    T Dequeue() {
-        if (data.GetCount() == 0) {
-            cout << "Advertencia: Dequeue en cola vacía" << endl;
-            return T{};
-        }
-        return data.Pop_Front();
-    }
+    
 
     // Devuelve el elemento al frente de la cola 
     T Front() {
@@ -225,14 +218,7 @@ int main() {
     // Mostramos el primero
     cout << "Front: " << miCola.Front() << endl;
 
-    // Quitamos elementos de la cola
-    cout << "Dequeue: " << miCola.Dequeue() << endl;
-    cout << "Dequeue: " << miCola.Dequeue() << endl;
-    cout << "Dequeue: " << miCola.Dequeue() << endl;
-
-    // Intento de eliminar 
-    cout << "Intento de Dequeue en cola vacia: ";
-    miCola.Dequeue();
+  //eliminado
 
     return 0;
 }

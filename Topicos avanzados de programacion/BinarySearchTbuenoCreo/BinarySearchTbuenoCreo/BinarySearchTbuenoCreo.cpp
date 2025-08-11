@@ -178,6 +178,10 @@ public:
                     currentNode = currentNode->leftChild;
                 }
             }
+            else
+            {
+				return; // si value es igual a currentNode->data, entonces no hacemos nada
+            }
         }
 
     }

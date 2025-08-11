@@ -25,12 +25,15 @@ public:
 		// pedimos memoria para nuestras N listas.
 		data = new forward_list<T>[size];
 		arraySize = size;
+		// ahora tenemos un arreglo de listas vacías
+
 	}
 
 	// necesitan una función hash, que es la que mapea desde una llave hacia un índice
 	// es una función que toma un valor del tipo T y lo convierte en un entero
 	int HashFunction(T key)
 	{
+		// en este ejemplo asumimos que T es un entero y usamos el operador módulo
 		return key % arraySize;
 	}
 
@@ -50,8 +53,9 @@ public:
 	// pero no es directamente 'n', si no que es "n/arraySize" (en el caso promedio), lo cual la hace un poco mejor.
 	void Remove(T element)
 	{
-		int index = HashFunction(element);
-		forward_list<T>& listAtIndex = data[index];
+		int index = HashFunction(element);// obtenemos el índice en el que debe estar el elemento
+		forward_list<T>& listAtIndex = data[index];// referencia directa a la lista correspondiente para no copiarla
+
 		for (auto i : listAtIndex) // esto es básicamente un foreach
 		{
 			if (i == element)
@@ -61,14 +65,17 @@ public:
 				return;
 			}
 		}
+		// si no se encuentra el elemento, lanzamos una excepción
+
 		throw runtime_error("no element " + to_string(element) + " in this hash table.");
 	}
 
 	// contains es la función de búsqueda.
 	bool Contains(T element)
 	{
-		int index = HashFunction(element);
-		forward_list<T>& listAtIndex = data[index];
+		int index = HashFunction(element);		// si no se encuentra el elemento, lanzamos una excepción
+
+		forward_list<T>& listAtIndex = data[index];// lista correspondiente al índice
 		for (auto i : listAtIndex) // esto es básicamente un foreach
 		{
 			if (i == element)

@@ -32,16 +32,16 @@ class BinarySearchTree
 		TreeNode(T data)
 		{
 			parent = leftChild = rightChild = nullptr;
-			// this se refiere a exactamente el objeto que est· mandando a llamar la funciÛn. 
+			// this se refiere a exactamente el objeto que est√° mandando a llamar la funci√≥n. 
 			this->data = data;
 		}
 
 		T data;
-		// el padre de este nodo dentro del ·rbol. 
+		// el padre de este nodo dentro del √°rbol. 
 		// En otras palabras, this == parent.leftChild || this == parent.rightChild
 		TreeNode<T>* parent;
 
-		// vector<TreeNode*> children; // si quisiÈramos que tuviera la posibilidad de tener m·s de dos hijos cada nodo.
+		// vector<TreeNode*> children; // si quisi√©ramos que tuviera la posibilidad de tener m√°s de dos hijos cada nodo.
 		TreeNode<T>* leftChild;
 		TreeNode<T>* rightChild;
 	};
@@ -58,11 +58,11 @@ public:
 		// primero checamos si root es nullptr. 
 		if (root == nullptr)
 		{
-			// si sÌ es nullptr, quiere decir que value es el primer valor en entrar, y por tanto se va a 
+			// si s√≠ es nullptr, quiere decir que value es el primer valor en entrar, y por tanto se va a 
 			// convertir en el nodo root.
 			root = new TreeNode<T>(value);
 			count++;
-			return; // nos salimos de la funciÛn.
+			return; // nos salimos de la funci√≥n.
 		}
 
 		TreeNode<T>* currentNode = root;
@@ -92,29 +92,29 @@ public:
 			// checamos si ese hijo de la derecha es nullptr.
 			if (currentNode->rightChild == nullptr)
 			{
-				// si sÌ es nullptr, entonces ahora value va a ser ese hijo.
+				// si s√≠ es nullptr, entonces ahora value va a ser ese hijo.
 				InsertarNode(currentNode, false, value);
 				return;
 			}
 			else
 			{
-				// aquÌ hacemos la recursiÛn
+				// aqu√≠ hacemos la recursi√≥n
 				return AddRecursive(value, currentNode->rightChild);
 			}
 		}
-		else if (value < currentNode->data) // TODO: aquÌ hay una trampa que veremos pronto.
+		else if (value < currentNode->data) // TODO: aqu√≠ hay una trampa que veremos pronto.
 		{
 			// entonces nos vamos a su izquierda.
 			// checamos si ese hijo de la izquierda es nullptr.
 			if (currentNode->leftChild == nullptr)
 			{
-				// si sÌ es nullptr, entonces ahora value va a ser ese hijo.
+				// si s√≠ es nullptr, entonces ahora value va a ser ese hijo.
 				InsertarNode(currentNode, true, value);
 				return;
 			}
 			else
 			{
-				// aquÌ hacemos la recursiÛn
+				// aqu√≠ hacemos la recursi√≥n
 				return AddRecursive(value, currentNode->leftChild);
 			}
 		}
@@ -126,19 +126,19 @@ public:
 		// primero checamos si root es nullptr. 
 		if (root == nullptr)
 		{
-			// si sÌ es nullptr, quiere decir que value es el primer valor en entrar, y por tanto se va a 
+			// si s√≠ es nullptr, quiere decir que value es el primer valor en entrar, y por tanto se va a 
 			// convertir en el nodo root.
 			root = new TreeNode<T>(value);
 			count++;
-			return; // nos salimos de la funciÛn.
+			return; // nos salimos de la funci√≥n.
 		}
 
 		TreeNode<T>* currentNode = root;
 
 		// necesitamos un ciclo que dure hasta que lleguemos a un nodo nullptr
-		while (currentNode != nullptr) // mientras que nuestro nodo actual siga siendo v·lido, continua el ciclo.
+		while (currentNode != nullptr) // mientras que nuestro nodo actual siga siendo v√°lido, continua el ciclo.
 		{
-			// el ciclo consiste en el proceso de navegar a travÈs de hijos izquierdos y derechos
+			// el ciclo consiste en el proceso de navegar a trav√©s de hijos izquierdos y derechos
 
 			// si value es mayor que el data de currentNode
 			if (value > currentNode->data)
@@ -147,7 +147,7 @@ public:
 				// checamos si ese hijo de la derecha es nullptr.
 				if (currentNode->rightChild == nullptr)
 				{
-					// si sÌ es nullptr, entonces ahora value va a ser ese hijo.
+					// si s√≠ es nullptr, entonces ahora value va a ser ese hijo.
 					InsertarNode(currentNode, false, value);
 					return;
 				}
@@ -156,13 +156,13 @@ public:
 					currentNode = currentNode->rightChild;
 				}
 			}
-			else if (value < currentNode->data) // TODO: aquÌ hay una trampa que veremos pronto.
+			else if (value < currentNode->data) // TODO: aqu√≠ hay una trampa que veremos pronto.
 			{
 				// entonces nos vamos a su izquierda.
 				// checamos si ese hijo de la izquierda es nullptr.
 				if (currentNode->leftChild == nullptr)
 				{
-					// si sÌ es nullptr, entonces ahora value va a ser ese hijo.
+					// si s√≠ es nullptr, entonces ahora value va a ser ese hijo.
 					InsertarNode(currentNode, true, value);
 					return;
 				}
@@ -186,25 +186,25 @@ public:
 
 	int MinimaAltura()
 	{
-		// le dice que tiene N nodos, y que es un ·rbol de base 2 (porque es binario en este caso).
+		// le dice que tiene N nodos, y que es un √°rbol de base 2 (porque es binario en este caso).
 		return MinimaAlturaDeArbol(count, 2);
 	}
 
 
 
-	// Es el nodo raÌz desde el cual el ·rbol es capaz de llegar a cualquier otro nodo en el ·rbol.
+	// Es el nodo ra√≠z desde el cual el √°rbol es capaz de llegar a cualquier otro nodo en el √°rbol.
 	TreeNode<T>* root;
 
-	// cu·ntos nodos en total tiene el ·rbol.
+	// cu√°ntos nodos en total tiene el √°rbol.
 	int count;
 
-	// cu·ntos niveles de profundidad tiene el ·rbol.
+	// cu√°ntos niveles de profundidad tiene el √°rbol.
 	// int depth;
 
-	// Retornamos true si existe (implementaciÛn iterativa: SEARCH)
+	// Retornamos true si existe (implementaci√≥n iterativa: SEARCH)
 	bool Search(T value)
 	{
-		// ImplementaciÛn iterativa de b˙squeda 
+		// Implementaci√≥n iterativa de b√∫squeda 
 		TreeNode<T>* currentNode = root;
 		while (currentNode != nullptr)
 		{
@@ -225,11 +225,11 @@ public:
 
 		if (nodeToDelete == nullptr)
 		{
-			cout << "no existe el valor value en este ·rbol." << endl;
+			cout << "no existe el valor value en este √°rbol." << endl;
 			return;
 		}
 
-		// si sÌ existe, entonces checamos cu·l de los 3 casos es.
+		// si s√≠ existe, entonces checamos cu√°l de los 3 casos es.
 		// caso 1: el nodo no tiene hijos
 		if (nodeToDelete->leftChild == nullptr &&
 			nodeToDelete->rightChild == nullptr)
@@ -237,7 +237,7 @@ public:
 			// entonces no tiene hijos
 
 			// haces que el puntero a hijo de su padre que apunta a este nodo sea null
-			// checamos si nodeToDelete es hijo izquierdo o derecho de su pap·.
+			// checamos si nodeToDelete es hijo izquierdo o derecho de su pap√°.
 			if (nodeToDelete->parent->leftChild == nodeToDelete) // soy tu hijo izquierdo?
 			{
 				nodeToDelete->parent->leftChild = nullptr;
@@ -257,10 +257,10 @@ public:
 		if (nodeToDelete->leftChild == nullptr && nodeToDelete->rightChild != nullptr)
 		{
 			// tiene hijo derecho pero no izquierdo
-			// haces que dicho hijo tome el lugar de X en el ·rbol 
+			// haces que dicho hijo tome el lugar de X en el √°rbol 
 
-			// en pocas palabras: Nieto se conecta al abuelo, y el abuelo al nieto, y luego se borra el pap·.
-			// nodeToDelete le dice a su pap· que ahora que ahora Èl debe apuntar a su nieto.
+			// en pocas palabras: Nieto se conecta al abuelo, y el abuelo al nieto, y luego se borra el pap√°.
+			// nodeToDelete le dice a su pap√° que ahora que ahora √©l debe apuntar a su nieto.
 			// necesitamos saber si somos hijo izquierdo o derecho del abuelo, para poder reasignar el puntero.
 			if (nodeToDelete->parent->leftChild == nodeToDelete) // soy tu hijo izquierdo?
 			{
@@ -281,10 +281,10 @@ public:
 		else if (nodeToDelete->leftChild != nullptr && nodeToDelete->rightChild == nullptr)
 		{
 			// tiene hijo izquierdo pero no derecho.
-			// haces que dicho hijo tome el lugar de X en el ·rbol 
+			// haces que dicho hijo tome el lugar de X en el √°rbol 
 
-			// en pocas palabras: Nieto se conecta al abuelo, y el abuelo al nieto, y luego se borra el pap·.
-			// nodeToDelete le dice a su pap· que ahora que ahora Èl debe apuntar a su nieto.
+			// en pocas palabras: Nieto se conecta al abuelo, y el abuelo al nieto, y luego se borra el pap√°.
+			// nodeToDelete le dice a su pap√° que ahora que ahora √©l debe apuntar a su nieto.
 			// necesitamos saber si somos hijo izquierdo o derecho del abuelo, para poder reasignar el puntero.
 			if (nodeToDelete->parent->leftChild == nodeToDelete) // soy tu hijo izquierdo?
 			{
@@ -304,16 +304,16 @@ public:
 			return;
 		}
 
-		// aquÌ ya sabemos que tiene los dos hijos porque si no no habrÌa llegado a esta lÌnea de cÛdigo.
+		// aqu√≠ ya sabemos que tiene los dos hijos porque si no no habr√≠a llegado a esta l√≠nea de c√≥digo.
 		// entonces es el caso 3:
 
 		// encontramos al sucesor de nodeToDelete
-		TreeNode<T>* successorNode = Successor(nodeToDelete);  // NOTA, nunca podrÌa ser nulo, porque nodeToDelete tiene sus dos hijos
+		TreeNode<T>* successorNode = Successor(nodeToDelete);  // NOTA, nunca podr√≠a ser nulo, porque nodeToDelete tiene sus dos hijos
 		// a donde nodeToDelete apuntaba con la izquierda, ahora el sucesor apunta con su izquierda y viceversa.
 		successorNode->leftChild = nodeToDelete->leftChild;
 		nodeToDelete->leftChild->parent = successorNode;
 
-		// el hijo derecho del sucesor ahora es hijo del pap· del sucesor y viceversa.
+		// el hijo derecho del sucesor ahora es hijo del pap√° del sucesor y viceversa.
 		// pero necesitamos saber si successorNode es hijo izquierdo o derecho del abuelo.
 		if (successorNode->parent->leftChild == successorNode) // soy tu hijo izquierdo?
 		{
@@ -326,7 +326,7 @@ public:
 		}
 		// conectamos el hijo derecho del sucesor con su abuelo.
 		// coreccion: validamos que successorNode->rightChild no sea nullptr antes de acceder a su campo 'parent'.
-		// Esto evita un error de segmentaciÛn si el sucesor no tiene hijo derecho.
+		// Esto evita un error de segmentaci√≥n si el sucesor no tiene hijo derecho.
 		if (successorNode->rightChild != nullptr)
 			successorNode->rightChild->parent = successorNode->parent;
 
@@ -334,9 +334,9 @@ public:
 		successorNode->rightChild = nodeToDelete->rightChild;
 		nodeToDelete->rightChild->parent = successorNode;
 
-		// nos falta que el sucesor sepa quiÈn es su pap·, y viceversa
+		// nos falta que el sucesor sepa qui√©n es su pap√°, y viceversa
 		successorNode->parent = nodeToDelete->parent;
-		// aquÌ SÕ necesitamos saber si nodeToDelete es su hijo derecho o izquierdo
+		// aqu√≠ S√ç necesitamos saber si nodeToDelete es su hijo derecho o izquierdo
 		if (nodeToDelete->parent->leftChild == nodeToDelete) // soy tu hijo izquierdo?
 		{
 			nodeToDelete->parent->leftChild = successorNode;
@@ -356,11 +356,11 @@ public:
 private:
 	TreeNode<T>* TreeMaximum()
 	{
-		// empezamos en la raÌz y le pedimos el m·ximo desde ahÌ.
+		// empezamos en la ra√≠z y le pedimos el m√°ximo desde ah√≠.
 		return Maximum(root);
 	}
 
-	// Nos da el m·ximo a partir de node como raÌz.
+	// Nos da el m√°ximo a partir de node como ra√≠z.
 	TreeNode<T>* Maximum(TreeNode<T>* node)
 	{
 		// empezamos en node y 
@@ -373,14 +373,14 @@ private:
 	}
 
 
-	// el mÌnimo valor T en todo el ·rbol.
+	// el m√≠nimo valor T en todo el √°rbol.
 	TreeNode<T>* TreeMinimum()
 	{
-		// empezamos en la raÌz y le pedimos el mÌnimo desde ahÌ
+		// empezamos en la ra√≠z y le pedimos el m√≠nimo desde ah√≠
 		return Minimum(root);
 	}
 
-	// Nos da el mÌnimo a partir de node como raÌz.
+	// Nos da el m√≠nimo a partir de node como ra√≠z.
 	TreeNode<T>* Minimum(TreeNode<T>* node)
 	{
 		// empezamos en node y 
@@ -394,7 +394,7 @@ private:
 
 	TreeNode<T>* MinimumWithRecursive()
 	{
-		// empezamos en la raÌz y hacemos recursiÛn.
+		// empezamos en la ra√≠z y hacemos recursi√≥n.
 		return MinimumRecursive(root);
 	}
 
@@ -409,18 +409,18 @@ private:
 	TreeNode<T>* Successor(TreeNode<T>* node)
 	{
 		if (node->rightChild != nullptr)
-			return Minimum(node->rightChild); // Minimum se debe mandar a llamar desde la derecha del node que se recibiÛ como par·metro.
+			return Minimum(node->rightChild); // Minimum se debe mandar a llamar desde la derecha del node que se recibi√≥ como par√°metro.
 
 		// si no, entonces 
 		// tomamos el padre de node, y lo guardamos en una variable
 		TreeNode<T>* ancestor = node->parent;
-		// Mientras que no llegue a null y siga siendo hijo derecho de alguien, entonces se seguir·
+		// Mientras que no llegue a null y siga siendo hijo derecho de alguien, entonces se seguir√°
 		// subiendo en los parents.
 		while (ancestor != nullptr && node == ancestor->rightChild)
 		{
-			// node se vuelve su pap·
+			// node se vuelve su pap√°
 			node = ancestor;
-			// y el pap· se vuelve su pap·
+			// y el pap√° se vuelve su pap√°
 			ancestor = node->parent;
 		}
 		return ancestor;
@@ -430,18 +430,18 @@ private:
 	TreeNode<T>* Predecessor(TreeNode<T>* node)
 	{
 		if (node->leftChild != nullptr)
-			return Maximum(node->leftChild); // Maximum se debe mandar a llamar desde la izquierda del node que se recibiÛ como par·metro.
+			return Maximum(node->leftChild); // Maximum se debe mandar a llamar desde la izquierda del node que se recibi√≥ como par√°metro.
 
 		// si no, entonces 
 		// tomamos el padre de node, y lo guardamos en una variable
 		TreeNode<T>* ancestor = node->parent;
-		// Mientras que no llegue a null y siga siendo hijo izquierdo de alguien, entonces se seguir·
+		// Mientras que no llegue a null y siga siendo hijo izquierdo de alguien, entonces se seguir√°
 		// subiendo en los parents.
 		while (ancestor != nullptr && node == ancestor->leftChild)
 		{
-			// node se vuelve su pap·
+			// node se vuelve su pap√°
 			node = ancestor;
-			// y el pap· se vuelve su pap·
+			// y el pap√° se vuelve su pap√°
 			ancestor = node->parent;
 		}
 		return ancestor;
@@ -454,7 +454,7 @@ private:
 			return nullptr;
 		if (currentNode->data == value)
 			return currentNode;
-		// si el valor que est·s buscando (value) es menor que el de este nodo, vete al hijo izquierdo
+		// si el valor que est√°s buscando (value) es menor que el de este nodo, vete al hijo izquierdo
 		if (value < currentNode->data)
 		{
 			return SearchRecursive(currentNode->leftChild, value);
@@ -531,7 +531,7 @@ private:
 };
 
 /*
- SOLO ERA PARA MOTIVOS DE PROBAR QUE SUCCESSOR FUNCIONARA, SÕ PARECE FUNCIONAR.
+ SOLO ERA PARA MOTIVOS DE PROBAR QUE SUCCESSOR FUNCIONARA, S√ç PARECE FUNCIONAR.
 	T SuccessorValue(T value)
 	{
 		// primero buscamos el nodo que tiene ese valor.
@@ -539,14 +539,14 @@ private:
 
 		if (node == nullptr)
 		{
-			throw runtime_error("no se encontrÛ value en este ·rbol para hacer Sucessor");
+			throw runtime_error("no se encontr√≥ value en este √°rbol para hacer Sucessor");
 			return {};
 		}
 
 		TreeNode<T>* result = Successor(node);
 		if (result == nullptr)
 		{
-			throw runtime_error("no se encontrÛ un successor para value en este ·rbol");
+			throw runtime_error("no se encontr√≥ un successor para value en este √°rbol");
 			return {};
 		}
 		return result->data;

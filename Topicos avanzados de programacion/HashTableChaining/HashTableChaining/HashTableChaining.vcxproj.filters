@@ -26,5 +26,8 @@
     <ClInclude Include="HashTable1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HashSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

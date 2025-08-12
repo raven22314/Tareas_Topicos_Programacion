@@ -1,5 +1,5 @@
 #pragma once
-#include <binary_search_tree.h>
+#include "BinarySearchTree.h"
 #include <iostream>
 #include <stack> // necesario para recorridos iterativos
 #include <cmath> // Required for std::log
@@ -537,31 +537,3 @@ private:
 };
 
 
-int main()
-{
-    // Creamos un BST de enteros
-    BinarySearchTree<int> bst;
-
-    // Probamos inserciones (usando recursivo y no recursivo original)
-    bst.AddWithAddRecursive(50);
-    bst.AddWithAddRecursive(30);
-    bst.AddWithAddRecursive(70);
-    bst.AddWithAddRecursive(20);
-    bst.AddWithAddRecursive(40);
-    bst.AddWithAddRecursive(60);
-    bst.AddWithAddRecursive(80);
-
-    cout << "InOrder (recursivo):" << endl;
-    bst.InOrderWithRecursive();
-
-    // Prueba de Search (iterativa)
-    cout << "Buscar 60: " << (bst.Search(60) ? "Encontrado" : "No encontrado") << endl;
-    cout << "Buscar 100: " << (bst.Search(100) ? "Encontrado" : "No encontrado") << endl;
-
-    // Prueba Post-order iterativo (usando helper interno)
-    cout << "Post-order (iterativo):" << endl;
-    bst.PostOrderIterative();
-
-    cout << "Pruebas completadas." << endl;
-    return 0;
-}

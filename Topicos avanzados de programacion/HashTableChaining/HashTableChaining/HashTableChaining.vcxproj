@@ -126,6 +126,7 @@
     <ClCompile Include="HashTableChaining.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HashSet.h" />
     <ClInclude Include="HashTable1.h" />
     <ClInclude Include="Header.h" />
   </ItemGroup>

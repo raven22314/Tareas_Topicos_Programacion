@@ -132,7 +132,40 @@ public:
 	}
 };
 
-void HashTableChainingExample();
+void HashTableChainingExample()
+{
+    // Create a HashTableChaining instance with integer keys
+    HashTableChaining<int> hashTable(10);
+
+    // Add elements to the hash table
+    hashTable.Add(15);
+    hashTable.Add(25);
+    hashTable.Add(35);
+
+    // Print the hash table
+    cout << "HashTableChaining contents:" << endl;
+    hashTable.Print();
+
+    // Check if an element exists
+    cout << "Contains 25: " << (hashTable.Contains(25) ? "Yes" : "No") << endl;
+
+    // Remove an element
+    hashTable.Remove(25);
+    cout << "After removing 25:" << endl;
+    hashTable.Print();
+
+    // Create a HashSet instance with integer keys
+    HashSet<int> hashSet(10);
+
+    // Add elements to the hash set
+    hashSet.Add(15);
+    hashSet.Add(25);
+    hashSet.Add(15); // Duplicate element
+
+    // Print the hash set
+    cout << "HashSet contents:" << endl;
+    hashSet.Print();
+}
 
 
 

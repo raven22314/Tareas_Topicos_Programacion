@@ -1,5 +1,5 @@
 #pragma once
-
+#include<HashTable1.h>
 #include <iostream>
 #include <forward_list> 
 #include <string>
@@ -134,33 +134,6 @@ public:
 
 void HashTableChainingExample();
 
-int main()
-{
-	// Creamos un HashSet de tamaño 5
-	HashSet<int> miSet(5);
 
-	// Agregamos algunos elementos
-	miSet.Add(10);
-	miSet.Add(20);
-	miSet.Add(15);
-	miSet.Add(20); // este es repetido, debería mostrar mensaje
-	miSet.Add(25);
-	miSet.Add(15); // repetido
-
-	// Mostramos el contenido del HashSet
-	cout << "\nContenido del HashSet:\n";
-	miSet.Print();
-
-	// Probamos búsqueda
-	cout << "\n¿Contiene el 20? " << (miSet.Contains(20) ? "Sí" : "No") << endl;
-	cout << "¿Contiene el 99? " << (miSet.Contains(99) ? "Sí" : "No") << endl;
-
-	// Probamos eliminar
-	cout << "\nEliminando el 20...\n";
-	miSet.Remove(20);
-	miSet.Print();
-
-	return 0;
-}
 
 

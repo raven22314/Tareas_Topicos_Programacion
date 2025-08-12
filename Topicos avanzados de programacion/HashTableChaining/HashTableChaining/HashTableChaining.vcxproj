@@ -125,6 +125,10 @@
   <ItemGroup>
     <ClCompile Include="HashTableChaining.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HashTable1.h" />
+    <ClInclude Include="Header.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

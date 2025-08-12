@@ -1,5 +1,5 @@
 #pragma once
-
+#include <binary_search_tree.h>
 #include <iostream>
 #include <stack> // necesario para recorridos iterativos
 #include <cmath> // Required for std::log

@@ -1,57 +1,31 @@
-#pragma once
-#include <iostream>
-#include <forward_list>
-#include <vector>
+﻿#pragma once
+#include "HashTable1.h" // Corrected file extension to .h
 using namespace std;
 
+// Clase HashSet 
+// Esta clase hereda de HashTableChaining para aprovechar todo su funcionamiento.
+// La única diferencia es que vamos a sobrescribir el método Add para que no permita elementos repetidos.
+
 template <typename T>
-class HashSet {
-private:
-    vector<forward_list<T>> table;
-    size_t capacity;
-
-    size_t HashFunction(const T& key) const {
-        return hash<T>{}(key) % capacity;
-    }
-
+class HashSet : public HashTableChaining<T>
+{
 public:
-    HashSet(size_t size) : capacity(size) {
-        table.resize(size);
-    }
+	// constructor: recibe el tamańo de la tabla y lo envía al constructor de la clase base
+	HashSet(unsigned int size) : HashTableChaining<T>(size) {}
 
-    void Add(const T& key) {
-        size_t index = HashFunction(key);
-        for (const auto& element : table[index]) {
-            if (element == key) {
-                cout << "Elemento repetido: " << key << endl;
-                return;
-            }
-        }
-        table[index].push_front(key);
-    }
-
-    bool Contains(const T& key) const {
-        size_t index = HashFunction(key);
-        for (const auto& element : table[index]) {
-            if (element == key) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    void Remove(const T& key) {
-        size_t index = HashFunction(key);
-        table[index].remove(key);
-    }
-
-    void Print() const {
-        for (size_t i = 0; i < table.size(); ++i) {
-            cout << "Bucket " << i << ": ";
-            for (const auto& element : table[i]) {
-                cout << element << " ";
-            }
-            cout << endl;
-        }
-    }
+	// método Add sobrescrito para evitar elementos repetidos
+	void Add(T element) override
+	{
+		// primero verificamos si el elemento ya existe
+		if (!this->Contains(element)) // usamos Contains de la clase base
+		{
+			// si no existe, lo agregamos normalmente usando Add de la clase base
+			HashTableChaining<T>::Add(element);
+		}
+		else
+		{
+			// si ya existe, mostramos un mensaje y no lo agregamos
+			cout << "Elemento repetido: " << element << endl;
+		}
+	}
 };

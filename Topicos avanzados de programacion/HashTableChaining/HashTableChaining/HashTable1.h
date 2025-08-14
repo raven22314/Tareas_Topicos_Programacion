@@ -1,35 +1,99 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <forward_list> 
 #include <string>
 using namespace std;
 
-int main()
+template <typename T>
+class HashTableChaining
 {
-	// Creamos un HashSet de tama�o 5
-	HashSet<int> miSet(5);
+	// un lugar donde almacenar los datos
+	// un arreglo de N forwards lists, donde cada una corresponde a un índice de la hash table.
+	forward_list<T>* data;
+	unsigned int arraySize;
+	// unsigned = SIN signo, es decir, no puede ser negativo.
 
-	// Agregamos algunos elementos
-	miSet.Add(10);
-	miSet.Add(20);
-	miSet.Add(15);
-	miSet.Add(20); // este es repetido, deber�a mostrar mensaje
-	miSet.Add(25);
-	miSet.Add(15); // repetido
+	// size_t // es solamente un int de 64 bits unsigned (no-negativo).
+	// originalmente, se supone que es el tamańo estándar de las variables (direcciones de memoria) que maneja en el sistema operativo.
 
-	// Mostramos el contenido del HashSet
-	cout << "\nContenido del HashSet:\n";
-	miSet.Print();
+public:
 
-	// Probamos b�squeda
-	cout << "\n�Contiene el 20? " << (miSet.Contains(20) ? "S�" : "No") << endl;
-	cout << "�Contiene el 99? " << (miSet.Contains(99) ? "S�" : "No") << endl;
+	HashTableChaining(unsigned int size)
+	{
+		// pedimos memoria para nuestras N listas.
+		data = new forward_list<T>[size];
+		arraySize = size;
+		// ahora tenemos un arreglo de listas vacías
+	}
 
-	// Probamos eliminar
-	cout << "\nEliminando el 20...\n";
-	miSet.Remove(20);
-	miSet.Print();
+	// necesitan una función hash, que es la que mapea desde una llave hacia un índice
+	// es una función que toma un valor del tipo T y lo convierte en un entero
+	int HashFunction(T key)
+	{
+		// en este ejemplo asumimos que T es un entero y usamos el operador módulo
+		return key % arraySize;
+	}
 
-	return 0;
-}
+	// métodos de insertar, quitar, buscar e iterar.
+	virtual void Add(T element)
+	{
+		int index = HashFunction(element);
+		data[index].push_front(element); // esto de aquí es complejidad constante, no aumenta conforme más elementos haya.
 
+		// arraySize = 10
+		// element = 39
+		// int index = HashFunction(element); nos da 9
+		// data[index] = element; nos daría que data[9] = 39
+	}
+
+	// aquí, remove SÍ es lineal en el aspecto de que crece conforme crece la cantidad de elementos guardados,
+	// pero no es directamente 'n', si no que es "n/arraySize" (en el caso promedio), lo cual la hace un poco mejor.
+	void Remove(T element)
+	{
+		int index = HashFunction(element);// obtenemos el índice en el que debe estar el elemento
+		forward_list<T>& listAtIndex = data[index];// referencia directa a la lista correspondiente para no copiarla
+
+		for (auto i : listAtIndex) // esto es básicamente un foreach
+		{
+			if (i == element)
+			{
+				// quitamos este elemento y salimos de la función.
+				listAtIndex.remove(i);
+				return;
+			}
+		}
+		// si no se encuentra el elemento, lanzamos una excepción
+		throw runtime_error("no element " + to_string(element) + " in this hash table.");
+	}
+
+	// contains es la función de búsqueda.
+	bool Contains(T element)
+	{
+		int index = HashFunction(element);		// si no se encuentra el elemento, lanzamos una excepción
+
+		forward_list<T>& listAtIndex = data[index];// lista correspondiente al índice
+		for (auto i : listAtIndex) // esto es básicamente un foreach
+		{
+			if (i == element)
+			{
+				// encontramos el elemento y salimos de la función.
+				return true;
+			}
+		}
+		return false; // retorna false porque si se llegó a esta línea es que nunca se entró al true de arriba.
+	}
+
+	void Print()
+	{
+		// vamos a iterar por cada uno de los índices
+		for (int i = 0; i < arraySize; i++)
+		{
+			cout << "lista del índice: " << std::to_string(i) << ": ";
+			// en cada índice hay una lista, entonces iteramos en toda la lista.
+			for (auto j : data[i]) // recuerden, este for con auto nos itera la lista de inicio a fin.
+				cout << j << ", ";
+
+			cout << endl;
+		}
+	}
+};

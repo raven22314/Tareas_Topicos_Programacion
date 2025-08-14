@@ -40,9 +40,13 @@ int main()
     // Prueba Post-order iterativo (usando helper interno)
     cout << "Post-order (iterativo):" << endl;
     bst.PostOrderIterative();
+    cout << "Pruebas completadas, se borro el arbol antes de salir " << endl;
 
-    cout << "Pruebas completadas." << endl;
+    // Eliminar todo el árbol antes de salir
+    bst.EliminarArbol();
+
     return 0;
+
 }
     
 

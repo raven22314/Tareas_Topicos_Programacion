@@ -355,7 +355,16 @@ public:
     void PostOrderIterative()
     {
         PostOrderIterative_InternalPrint();
+
+
     }
+    // Elimina todo el árbol de manera recursiva
+    void EliminarArbol() {
+        EliminarRecursivo(root);
+        root = nullptr;
+        count = 0;
+    }
+
 
 private:
     // Iterative post-order traversal helper that returns values in post-order via stack
@@ -527,6 +536,16 @@ private:
             cout << node->data << endl;
         }
     }
+
+    // Función auxiliar para eliminar recursivamente
+    void EliminarRecursivo(TreeNode<T>* nodo)
+    {
+        if (nodo == nullptr) return;
+        EliminarRecursivo(nodo->leftChild);
+        EliminarRecursivo(nodo->rightChild);
+        delete nodo;
+    }
+
 
 };
 
